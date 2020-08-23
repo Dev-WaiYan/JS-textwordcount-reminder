@@ -14,22 +14,27 @@
 
 
 <script type="text/javascript">
-	
+
+let limit = 10; // Changable Initial Limit
+let count = 0;
 let remainingWordCount = document.getElementById("remaining-wordcount");
+remainingWordCount.onload = checkWordCount(); // Initial state limit call
 
-remainingWordCount.onload = checkWordCount(); // Initial state limit
+function checkWordCount()
+{	
+	let textbox = document.getElementById('textbox');
+	count = textbox.value.length;
 
-
-function checkWordCount() 
-{
-	let limit = 100; // Changable Initial Limit
-
-	let count = document.getElementById('textbox').value.length;
+	if (count >= limit) {
+		textbox.value = textbox.value.slice(0,limit);
+		count = limit;
+	}
 
 	remainingWordCount.innerHTML = limit - count;
 }
 
 </script>
+
 
 
 </body>
